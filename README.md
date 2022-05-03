@@ -1,4 +1,5 @@
-# Petile
-Petile is a website designed for you to order things for your pet online!
+# Onboard Gustavo
+Frontend react project to get used to Taqtile's practices and workflow.
 ## Environment and tools
+
 ## Steps to run and debug
