@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import loginScreen from './LoginScreen'
 
 function App() {
   return (
     <>
-      <p>Hello World</p>
+    {loginScreen()}
     </>
   );
 }
