@@ -9,7 +9,7 @@ function validateForm(email: string, password: string)
 }
 
 function validateEmail(email: string) {
-  var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
   if (emailRegex.test(email)) {
     console.log("valid e-mail");
   } else {
