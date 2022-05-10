@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginScreen from "./LoginScreen";
+import NewPage from "./NewPage";
 
 export const client = new ApolloClient({
   uri: "https://tq-template-server-sample.herokuapp.com/graphql",
@@ -18,7 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginScreen />} />
+          <Route path="newpage" element={<NewPage />} />
+        </Routes>
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>
 );
