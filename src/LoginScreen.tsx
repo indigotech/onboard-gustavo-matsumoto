@@ -8,29 +8,31 @@ import { client } from "./index";
 function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [LoginMutation, { data, loading, error }] = useMutation(
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (validateForm(email, password)) {
+      loginMutation({
+        variables: { email: email, password: password },
+      });
+      if (error) {
+        console.log(data);
+        alert("Invalid email or password");
+      }
+    }
+  };
+  const [loginMutation, { data, loading, error }] = useMutation(
     LOGIN_MUTATION,
     {
       onCompleted: ({ login }) => {
-        localStorage.setItem("token", login.token); 
+        localStorage.setItem("token", login.token);
         console.log("login successful");
       },
     }
   );
   return (
-    <ApolloProvider client={client}>
+    <>
       <h1>Bem-vindo(a) à Taqtile!</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          LoginMutation({
-            variables: { email: email, password: password },
-          });
-          if (error) {
-            console.log(data);
-          }
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <label>E-mail</label>
         <input
           type="email"
@@ -46,11 +48,9 @@ function LoginScreen() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" onClick={() => validateForm(email, password)}>
-          Entrar
-        </button>
+        <button type="submit">Entrar</button>
       </form>
-    </ApolloProvider>
+    </>
   );
 }
 
