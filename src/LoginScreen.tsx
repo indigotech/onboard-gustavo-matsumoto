@@ -8,18 +8,20 @@ import { json } from "body-parser";
 function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginMutation, { data, loading, error }] = useMutation(
-    LOGIN_MUTATION,
-    {
-      onCompleted: ({ login }) => {
-        localStorage.setItem("token", login.token);
-        console.log("login successful");
-      },
-      onError: () => {
-        alert(JSON.parse(JSON.stringify(error)).message);
+  const [loginMutation, { data, loading }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: ({ login }) => {
+      localStorage.setItem("token", login.token);
+      console.log("login successful");
+    },
+    onError: (error) => {
+      if (error.graphQLErrors != null) {
+        alert(error?.message);
       }
-    }
-  );
+      else{
+        alert("Um erro ocorreu, tente novamente mais tarde");
+      }
+    },
+  });
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (validateEmail(email) && validatePassword(password)) {
