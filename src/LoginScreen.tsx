@@ -3,7 +3,6 @@ import { validateEmail, validatePassword } from "./InputValidationScript";
 import { useState } from "react";
 import { LOGIN_MUTATION } from "./services/GraphQLOperations";
 import { useMutation } from "@apollo/client";
-import { json } from "body-parser";
 
 function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -16,8 +15,7 @@ function LoginScreen() {
     onError: (error) => {
       if (error.graphQLErrors != null) {
         alert(error?.message);
-      }
-      else{
+      } else {
         alert("Um erro ocorreu, tente novamente mais tarde");
       }
     },
