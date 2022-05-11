@@ -1,5 +1,5 @@
 export function validateEmail(email: string) {
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (emailRegex.test(email)) {
     console.log("valid e-mail");
     return true;
@@ -10,7 +10,8 @@ export function validateEmail(email: string) {
 }
 
 export function validatePassword(password: string) {
-  var passwordHaveDigitAndLetter = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+  const passwordHaveDigitAndLetter =
+    /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   if (passwordHaveDigitAndLetter.test(password)) {
     console.log("password have at least one letter and one digit");
     return true;

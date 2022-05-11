@@ -47,7 +47,9 @@ function LoginScreen() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Entrar</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Carregando" : "Entrar"}
+        </button>
       </form>
     </>
   );
