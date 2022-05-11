@@ -4,7 +4,7 @@ import App from "./App";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./LoginScreen";
-import NewPage from "./NewPage";
+import UsersListScreen from "./UsersListScreen";
 
 export const client = new ApolloClient({
   uri: "https://tq-template-server-sample.herokuapp.com/graphql",
@@ -20,7 +20,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginScreen />} />
-          <Route path="newpage" element={<NewPage />} />
+          <Route path="users" element={<UsersListScreen />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
