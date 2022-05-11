@@ -1,15 +1,4 @@
-import e from "express";
-import React from "react";
-import { isRegExp } from "util/types";
-
-function validateForm(email: string, password: string) {
-  if (validateEmail(email) && validatePassword(password)) {
-    return true;
-  }
-  return false;
-}
-
-function validateEmail(email: string) {
+export function validateEmail(email: string) {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (emailRegex.test(email)) {
     console.log("valid e-mail");
@@ -20,7 +9,7 @@ function validateEmail(email: string) {
   return false;
 }
 
-function validatePassword(password: string) {
+export function validatePassword(password: string) {
   var passwordHaveDigitAndLetter = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   if (passwordHaveDigitAndLetter.test(password)) {
     console.log("password have at least one letter and one digit");
@@ -35,5 +24,3 @@ function validatePassword(password: string) {
   }
   return false;
 }
-
-export default validateForm;
