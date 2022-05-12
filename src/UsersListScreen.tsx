@@ -1,13 +1,21 @@
 import React from "react";
-import "./UserList"
+import "./UserList";
 import userList from "./UserList";
 
-
-const UserMap = userList.users.map((user)=> {return(<li key = {user.name}>{user.name}{'\n'}{user.email} </li>)});
-
 function UsersListScreen() {
-  return <div>{UserMap}</div>;
+  return (
+    <div>
+      {userList.users.map((user) => {
+        return (
+          <li key={user.name}>
+            {user.name}
+            {"\n"}
+            {user.email}
+          </li>
+        );
+      })}
+    </div>
+  );
 }
-
 
 export default UsersListScreen;
