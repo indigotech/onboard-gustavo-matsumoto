@@ -1,34 +1,33 @@
 import React from "react";
-import validateForm from "./InputValidationScript";
+import { validateEmail, validatePassword } from "./InputValidationScript";
 import { useState } from "react";
 import { LOGIN_MUTATION } from "./services/GraphQLOperations";
-import { ApolloProvider, useMutation } from "@apollo/client";
-import { client } from "./index";
+import { useMutation } from "@apollo/client";
 
 function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginMutation, { data, loading }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: ({ login }) => {
+      localStorage.setItem("token", login.token);
+      console.log("login successful");
+    },
+    onError: (error) => {
+      if (error.graphQLErrors != null) {
+        alert(error?.message);
+      } else {
+        alert("Um erro ocorreu, tente novamente mais tarde");
+      }
+    },
+  });
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (validateForm(email, password)) {
+    if (validateEmail(email) && validatePassword(password)) {
       loginMutation({
         variables: { email: email, password: password },
       });
-      if (error) {
-        console.log(data);
-        alert("Invalid email or password");
-      }
     }
   };
-  const [loginMutation, { data, loading, error }] = useMutation(
-    LOGIN_MUTATION,
-    {
-      onCompleted: ({ login }) => {
-        localStorage.setItem("token", login.token);
-        console.log("login successful");
-      },
-    }
-  );
   return (
     <>
       <h1>Bem-vindo(a) à Taqtile!</h1>
