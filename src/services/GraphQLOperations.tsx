@@ -11,3 +11,12 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+
+export const USERS_QUERY = gql`
+query($id: ID!){
+  user(id: $id){
+    name
+    email
+  }
+}
+`
