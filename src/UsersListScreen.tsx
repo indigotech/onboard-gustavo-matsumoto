@@ -20,9 +20,9 @@ function UsersListScreen() {
     return <h1>Loading</h1>;
   }
 
-  // if (error) {
-  //   return alert(error.message);
-  // }
+  if (error) {
+    return <h1>{error.message}</h1>;
+  }
 
   return (
     <div>
@@ -40,17 +40,3 @@ function UsersListScreen() {
 }
 
 export default UsersListScreen;
-
-// const useUserMap = (offset: number) => {
-//   const { data, loading, error } = useQuery(USERS_QUERY, {
-//     context: {
-//       headers: {
-//         Authorization: localStorage.getItem("token"),
-//       },
-//     },
-//     variables: { offset: offset, limit: LIMIT },
-//   });
-//   if (!loading) {
-//     return "Loading";
-//   }
-//   return ();
