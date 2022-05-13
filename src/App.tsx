@@ -1,7 +1,7 @@
 import { fromPromise, useMutation } from "@apollo/client";
 import React from "react";
 import "./App.css";
-import LoginScreen from "./LoginScreen";
+import LoginScreen from "./LoginScreen/LoginScreen";
 
 function App() {
   return (
