@@ -10,7 +10,7 @@ function UsersListScreen() {
   const [userList, setUserList] = useState<any>([]);
   const { data, loading, error } = useQuery(USERS_QUERY, {
     onCompleted: (data) => {
-      setUserList(data.users.nodes);
+      setUserList([...userList, ...data.users.nodes]);
     },
     context: {
       headers: {
@@ -39,7 +39,6 @@ function UsersListScreen() {
       })}
       <button
         onClick={() => {
-          setUserList([...userList, ...data.users.nodes]);
           setOffset(offset + LIMIT);
         }}
       >
