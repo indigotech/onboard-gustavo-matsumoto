@@ -44,6 +44,27 @@ function UsersListScreen() {
       >
         Load more
       </button>
+      <a
+        style={{
+          position: "fixed",
+          right: "2%",
+          top: "90%",
+          borderRadius: "50%",
+          height: "60px",
+          width: "60px",
+          backgroundColor: "black",
+          color: "white",
+          fontSize: "40px",
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textDecoration: "none",
+        }}
+        href="/createuser"
+      >
+        +
+      </a>
     </div>
   );
 }
