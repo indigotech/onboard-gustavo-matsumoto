@@ -1,7 +1,7 @@
 import React from "react";
 import { validateEmail, validatePassword } from "./InputValidationScript";
 import { useState } from "react";
-import { LOGIN_MUTATION } from "./services/GraphQLOperations";
+import { LOGIN_MUTATION } from "../services/GraphQLOperations";
 import { useMutation } from "@apollo/client";
 
 function LoginScreen() {
