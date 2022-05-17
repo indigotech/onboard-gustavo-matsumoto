@@ -28,7 +28,6 @@ function NewUserPage() {
         alert(error.message);
       },
       onCompleted: () => {
-        console.log("user created successfully");
         navigate("/users")
       },
     }
