@@ -3,14 +3,17 @@ import { validateEmail, validatePassword } from "./InputValidationScript";
 import { useState } from "react";
 import { LOGIN_MUTATION } from "../services/GraphQLOperations";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 
 function LoginScreen() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginMutation, { data, loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {
       localStorage.setItem("token", login.token);
-      console.log("login successful");
+      navigate("/users");
     },
     onError: (error) => {
       if (error.graphQLErrors != null) {
