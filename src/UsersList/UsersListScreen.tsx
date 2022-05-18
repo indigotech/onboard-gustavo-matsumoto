@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { USERS_QUERY } from "../services/GraphQLOperations";
 import { useState } from "react";
+import styled from "styled-components";
 
 const LIMIT = 50;
 
@@ -44,29 +45,26 @@ function UsersListScreen() {
       >
         Load more
       </button>
-      <a
-        style={{
-          position: "fixed",
-          right: "2%",
-          top: "90%",
-          borderRadius: "50%",
-          height: "60px",
-          width: "60px",
-          backgroundColor: "black",
-          color: "white",
-          fontSize: "40px",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textDecoration: "none",
-        }}
-        href="/createuser"
-      >
-        +
-      </a>
+      <FloatingButton href="/createuser">+</FloatingButton>
     </div>
   );
 }
+
+const FloatingButton = styled.a`
+  position: fixed;
+  right: 2%;
+  top: 90%;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  text-align: center;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+`;
 
 export default UsersListScreen;

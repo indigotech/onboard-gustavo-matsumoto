@@ -45,19 +45,3 @@ export const CREATE_USER_MUTATION = gql`
     }
   }
 `;
-
-// mutation {
-  
-//   createUser(
-//     data: {
-//       name: "joao"
-//       email: "joao@joao.com"
-//       phone: "91234-5678"
-//       birthDate: "2000-01-01"
-//       role: admin
-//     }
-//   ) {
-//     id
-//   }
-// }
-

@@ -25,7 +25,11 @@ function NewUserPage() {
         },
       },
       onError: (error) => {
-        alert(error.message);
+        if (error.graphQLErrors != null) {
+          alert(error?.message);
+        } else {
+          alert("Um erro ocorreu, tente novamente mais tarde");
+        }
       },
       onCompleted: () => {
         navigate("/users")
@@ -34,7 +38,6 @@ function NewUserPage() {
   );
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(error);
     if (validateEmail(email)) {
       createUserMutation({
         variables: {
@@ -65,6 +68,7 @@ function NewUserPage() {
         <input
           type="text"
           placeholder="912345678"
+          pattern="(^[0-9]*$)"
           onChange={(e) => setTel(e.target.value)}
           required
         />
