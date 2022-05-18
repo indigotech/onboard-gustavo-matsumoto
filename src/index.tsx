@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-//import App from "./App";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./LoginScreen/LoginScreen";
 import UsersListScreen from "./UsersList/UsersListScreen";
 import NewUserPage from "./NewUserPage/NewUserPage";
+import UserDetailsPage from "./UserDetailsPage/UserDetailsPage";
 
 const client = new ApolloClient({
   uri: "https://tq-template-server-sample.herokuapp.com/graphql",
@@ -23,6 +23,7 @@ root.render(
           <Route path="/" element={<LoginScreen />} />
           <Route path="users" element={<UsersListScreen />} />
           <Route path="createuser" element={<NewUserPage />} />
+          <Route path="userdetails" element={<UserDetailsPage />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

@@ -45,3 +45,16 @@ export const CREATE_USER_MUTATION = gql`
     }
   }
 `;
+
+export const USER_DETAILS_QUARY = gql`
+  query ($id: ID!){
+    user(id: $id){
+      name
+      email
+      id
+      role
+      phone
+      birthDate
+    }
+  }
+`

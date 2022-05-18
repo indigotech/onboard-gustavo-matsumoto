@@ -5,8 +5,7 @@ import { validateEmail } from "../LoginScreen/InputValidationScript";
 import { CREATE_USER_MUTATION } from "../services/GraphQLOperations";
 
 function NewUserPage() {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -32,7 +31,7 @@ function NewUserPage() {
         }
       },
       onCompleted: () => {
-        navigate("/users")
+        navigate("/users");
       },
     }
   );
@@ -41,11 +40,11 @@ function NewUserPage() {
     if (validateEmail(email)) {
       createUserMutation({
         variables: {
-            name,
-            email,
-            phone: tel,
-            birthDate: birth,
-            role,
+          name,
+          email,
+          phone: tel,
+          birthDate: birth,
+          role,
         },
       });
     }
