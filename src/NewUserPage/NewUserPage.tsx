@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../LoginScreen/InputValidationScript";
 import { CREATE_USER_MUTATION } from "../services/GraphQLOperations";
+import { H1 } from "../Components/H1";
+import { Button } from "../Components/Button";
+import { Form, Caption, Input, TopLabel } from "../Components/Form";
+import { Div } from "../Components/AlignCenter";
 
 function NewUserPage() {
   const navigate = useNavigate();
 
+  const [emailError, setEmailError] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [birth, setBirth] = useState(Date);
@@ -48,23 +53,48 @@ function NewUserPage() {
         },
       });
     }
+    setEmailError(validateEmail(email).message);
   };
   return (
-    <div>
-      <h1>Criar novo usuário</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Nome:</label>
-        <input type="text" onChange={(e) => setName(e.target.value)} required />
-
-        <label>E-mail:</label>
-        <input
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
+    <Div>
+      <H1>Criar novo usuário</H1>
+      <Form onSubmit={handleSubmit}>
+        <TopLabel color="gray">Nome:</TopLabel>
+        <Input
+          color="gray"
+          type="text"
+          onChange={(e) => setName(e.target.value)}
           required
         />
 
-        <label>Telefone:</label>
-        <input
+        {emailError != "" ? (
+          <>
+            <TopLabel color="red">E-mail</TopLabel>
+            <Input
+              color="red"
+              type="text"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </>
+        ) : (
+          <>
+            <TopLabel color="gray">E-mail</TopLabel>
+            <Input
+              color="gray"
+              type="text"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </>
+        )}
+        <Caption>{emailError}</Caption>
+
+        <TopLabel color="gray">Telefone:</TopLabel>
+        <Input
+          color="gray"
           type="text"
           placeholder="912345678"
           pattern="(^[0-9]*$)"
@@ -72,8 +102,9 @@ function NewUserPage() {
           required
         />
 
-        <label>Data de nascimento:</label>
-        <input
+        <TopLabel color="gray">Data de nascimento:</TopLabel>
+        <Input
+          color="gray"
           type="date"
           min="1900-01-01"
           onChange={(e) => setBirth(e.target.value)}
@@ -81,17 +112,17 @@ function NewUserPage() {
           required
         />
 
-        <label>Permissão</label>
-        <label>
+        <TopLabel color="gray">Permissão</TopLabel>
+        <TopLabel color="gray">
           <select onChange={(e) => setRole(e.target.value)}>
             <option value="admin">Admin</option>
             <option value="user">User</option>
           </select>
-        </label>
+        </TopLabel>
 
-        <button type="submit">Criar usuário</button>
-      </form>
-    </div>
+        <Button type="submit">Criar usuário</Button>
+      </Form>
+    </Div>
   );
 }
 

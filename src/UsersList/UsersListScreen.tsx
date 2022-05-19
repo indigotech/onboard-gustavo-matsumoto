@@ -2,8 +2,11 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { USERS_QUERY } from "../services/GraphQLOperations";
 import { useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { ListButton } from "../Components/ListButton";
+import { FloatingButton } from "../Components/FloatingButton";
+import { Button } from "../Components/Button";
+import { H1 } from "../Components/H1";
 
 const LIMIT = 50;
 
@@ -24,56 +27,34 @@ function UsersListScreen() {
     variables: { offset: offset, limit: LIMIT },
   });
   if (loading) {
-    return <h1>Loading</h1>;
+    return <H1>Loading</H1>;
   }
   if (error) {
-    return <h1>{error.message}</h1>;
+    return <H1>{error.message}</H1>;
   }
 
   return (
     <div>
+      <H1>Lista de usuários</H1>
       {userList.map((user: { name: string; email: string; id: number }) => {
         return (
-          <li key={user.id}>
-            <ListUser onClick={() => navigate("/userdetails", {state: user.id})}>
+            <ListButton onClick={() => navigate("/userdetails", {state: user.id})} key={user.id}>
               {user.name}
-              {"\n"}
+              <br/>
               {user.email}
-            </ListUser>
-          </li>
+            </ListButton>
         );
       })}
-      <button
+      <Button
         onClick={() => {
           setOffset(offset + LIMIT);
         }}
       >
         Load more
-      </button>
+      </Button>
       <FloatingButton href="/createuser">+</FloatingButton>
     </div>
   );
 }
-
-const ListUser = styled.button`
-  margin: 2px;
-`;
-
-const FloatingButton = styled.a`
-  position: fixed;
-  right: 2%;
-  top: 90%;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-  background-color: black;
-  color: white;
-  font-size: 40px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-`;
 
 export default UsersListScreen;
